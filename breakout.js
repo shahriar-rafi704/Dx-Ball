@@ -52,18 +52,14 @@ window.onload = function () {
     context = board.getContext("2d");
 
     requestAnimationFrame(update);
-
-    // Add a mousemove event listener to control the player's paddle
+  
     document.addEventListener("mousemove", movePlayerWithMouse);
-
-    // Add a keydown event listener to restart the game with the spacebar
     document.addEventListener("keydown", function (e) {
         if (e.code === "Space" && gameOver) {
             resetGame();
         }
     });
 
-    // Call createBlocks only once at the beginning
     createBlocks();
 }
 
@@ -117,7 +113,6 @@ function update() {
                 }
                 if (blockHitCounts[i] === 3) {
                     block.break = true;
-                    // Adjust ball velocity based on collision direction
                     const dx = ball.x - Math.max(block.x, Math.min(ball.x, block.x + block.width));
                     const dy = ball.y - Math.max(block.y, Math.min(ball.y, block.y + block.height));
                     if (Math.abs(dx) < Math.abs(dy)) {
@@ -140,14 +135,14 @@ function update() {
     if (blockCount == 0) {
         score += 100 * blockRows * blockColumns;
         blockRows = Math.min(blockRows + 1, blockMaxRows);
-        //createBlocks();
+        
     }
 
     context.font = "20px sans-serif";
     context.fillText(score, 10, 25);
 }
 
-// Function to check collision between a circle (ball) and a rectangle (block)
+
 function circleRectCollision(circle, rect) {
     const closestX = Math.max(rect.x, Math.min(circle.x, rect.x + rect.width));
     const closestY = Math.max(rect.y, Math.min(circle.y, rect.y + rect.height));
@@ -194,7 +189,6 @@ function rightCollision(ball, block) {
     return detectCollision(ball, block) && (block.x + block.width) >= ball.x;
 }
 
-// Add a new function to check collision between the ball and a block
 function ballCollision(ball, block) {
     return ball.x + ball.radius > block.x &&
         ball.x - ball.radius < block.x + block.width &&
@@ -242,7 +236,7 @@ function resetGame() {
     createBlocks();
 }
 
-// Define block colors based on row
+
 function getBlockColor(rowIndex) {
     if (rowIndex === 0) {
         return "green";
