@@ -1,10 +1,14 @@
 body {
     text-align: center;
+    background-image: linear-gradient(to bottom right, rgb(54, 108, 151), rgb(16, 79, 131), rgb(34, 216, 161), rgba(126, 247, 210, 0.575));
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 #board {
     background-color: black;
     border-top: 5px solid skyblue;
     border-left: 5px solid skyblue;
-    border-right: 5px solid skyblue;
+    border-right: 5px solid skyblue
 }
